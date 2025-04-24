@@ -4,9 +4,9 @@ local config = require("norme.config")
 
 ---@type fun(opts: NormeConfig?)
 function M.setup(opts)
-	local normels = require("norme.null-ls")
-
 	config.setup(opts)
+
+	local normels = require("norme.null-ls")
 	require("null-ls").register(normels.source)
 end
 

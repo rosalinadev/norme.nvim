@@ -4,6 +4,7 @@ local M = {}
 local defaults = {
 	---@type string?
 	cmd = "norminette",
+	args = {},
 }
 
 ---@type NormeConfig

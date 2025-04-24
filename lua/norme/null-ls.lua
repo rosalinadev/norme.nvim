@@ -12,7 +12,6 @@ M.source = {
 	method = nls.methods.DIAGNOSTICS,
 	filetypes = {
 		"c",
-		"cpp",
 	},
 	can_run = function()
 		return require("null-ls.utils").is_executable("norminette")
@@ -25,6 +24,7 @@ M.source = {
 				"$FILENAME",
 				params.ft == "c" and "--cfile" or "--hfile",
 				"$TEXT",
+				unpack(config.args),
 			}
 		end,
 		format = "line",

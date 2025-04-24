@@ -1,47 +1,26 @@
+> **NOTE:** This is a personal fork for my own use, functionality is not guaranteed.
+
 # Norme.nvim
 A null-ls source for École 42 [`norminette`](https://github.com/42School/norminette)
 
 ## Requirements
 - NeoVim `v0.8+`.
-- [null-ls.nvim](https://github.com/jose-elias-alvarez/null-ls.nvim)
-- Executable `norminette` in your `PATH`
-
-
-## Installation
-
-<details><summary>Using lazy.nvim</summary>
-
-Norme.nvim LazySpec:
-
-```lua
-local spec = {
-	"vinicius507/norme.nvim",
-	dependencies = { "jose-elias-alvarez/null-ls.nvim" }
-}
-```
-</details>
-
-<details><summary>Using Packer</summary>
-
-```lua
-use({
-	"vinicius507/norme.nvim",
-	requires = { "jose-elias-alvarez/null-ls.nvim" }
-})
-```
-</details>
+- [none-ls.nvim](https://github.com/nvimtools/none-ls.nvim)
+- [`norminette`](https://github.com/42School/norminette) installed
 
 ## Setup
 You can pass your configuration via the `setup` function.
 
-> **Warning**
-> Remember to setup the plugin only after setting up null-ls!
+> **Warning** Remember to setup the plugin only after setting up null-ls!
 
 ```lua
+vim.g.c_syntax_for_h = 1 -- norminette doesn't do c++
+vim.diagnostic.config({ virtual_text = true }) -- required since nvim 0.11
 require("null-ls").setup({ ... })
 require("norme").setup({
 	-- Your configuration
-	cmd = os.getenv('HOME') .. '/.local/bin/norminette'
+	cmd = os.getenv('HOME') .. '/.local/bin/norminette',
+	args = { "--no-colors" }, -- since norminette 3.3.56
 })
 ```
 
@@ -51,5 +30,6 @@ Norme.nvim comes with the following defaults:
 ---@type NormeConfig
 local defaults = {
 	cmd = "norminette",
+	args = {},
 }
 ```
